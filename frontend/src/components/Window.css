@@ -1,0 +1,220 @@
+.window {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+  min-height: 300px;
+  user-select: none;
+  position: relative;
+}
+
+.window.maximized {
+  border-radius: 0;
+  border: none;
+}
+
+.window-titlebar {
+  height: 40px;
+  background: rgba(246, 246, 246, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  cursor: move;
+  user-select: none;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.window.maximized .window-titlebar {
+  cursor: default;
+}
+
+.window-controls {
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.control-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.control-btn span {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  position: absolute;
+  font-size: 10px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.window-titlebar:hover .control-btn span {
+  opacity: 1;
+}
+
+.control-btn.close {
+  background: #ff5f57;
+}
+
+.control-btn.close:hover {
+  background: #ff3b30;
+}
+
+.control-btn.minimize {
+  background: #ffbd2e;
+}
+
+.control-btn.minimize:hover {
+  background: #ff9500;
+}
+
+.control-btn.maximize {
+  background: #28ca42;
+}
+
+.control-btn.maximize:hover {
+  background: #30d158;
+}
+
+.window-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  pointer-events: none;
+}
+
+.window-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Resize handles */
+.resize-handle {
+  position: absolute;
+  z-index: 10;
+}
+
+.resize-handle.corner {
+  width: 10px;
+  height: 10px;
+}
+
+.resize-handle.edge {
+  background: transparent;
+}
+
+.resize-handle.top {
+  top: 0;
+  left: 10px;
+  right: 10px;
+  height: 4px;
+  cursor: n-resize;
+}
+
+.resize-handle.bottom {
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 4px;
+  cursor: s-resize;
+}
+
+.resize-handle.left {
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 4px;
+  cursor: w-resize;
+}
+
+.resize-handle.right {
+  right: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 4px;
+  cursor: e-resize;
+}
+
+.resize-handle.top-left {
+  top: 0;
+  left: 0;
+  cursor: nw-resize;
+}
+
+.resize-handle.top-right {
+  top: 0;
+  right: 0;
+  cursor: ne-resize;
+}
+
+.resize-handle.bottom-left {
+  bottom: 0;
+  left: 0;
+  cursor: sw-resize;
+}
+
+.resize-handle.bottom-right {
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .window {
+    min-width: 300px;
+    min-height: 200px;
+  }
+  
+  .resize-handle {
+    display: none;
+  }
+  
+  .window-titlebar {
+    padding: 0 12px;
+  }
+  
+  .window-title {
+    font-size: 12px;
+  }
+}
+
+/* Animation for window opening */
+@keyframes windowOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.window {
+  animation: windowOpen 0.3s ease-out;
+}

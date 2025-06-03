@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700;800&display=swap');
+
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  background: #f8f9fa;
+  position: relative;
+  overflow: hidden;
+  /* Static grid background */
+  background-image: 
+    linear-gradient(rgba(108, 117, 125, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108, 117, 125, 0.2) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0;
+}
+
+/* Subtle grid overlay for depth */
+.desktop::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(108, 117, 125, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108, 117, 125, 0.1) 1px, transparent 1px);
+  background-size: 120px 120px;
+  background-position: 0 0;
+  pointer-events: none;
+}
+
+.desktop-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 28px; /* Account for menu bar */
+  padding-bottom: 80px; /* Account for dock */
+  z-index: 1;
+}
+
+/* Portfolio Title Styling */
+.portfolio-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.robotic-text {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(2.5rem, 8vw, 7rem);
+  font-weight: 400;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  position: relative;
+  line-height: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+  
+  /* Subtle shadow for depth */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text-line {
+  display: flex;
+  gap: 0.2em;
+  align-items: center;
+}
+
+.word {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  padding: 0.05em 0.02em;
+  color: #000000;
+}
+
+.word:hover {
+  animation: wordPulse 0.8s ease-in-out infinite;
+}
+
+/* Special styling for PORTFOLIO word */
+.word.portfolio {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1.3em;
+  color: #000000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.word.portfolio:hover {
+  animation: portfolioPulse 0.8s ease-in-out infinite;
+}
+
+@keyframes wordPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes portfolioPulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: scale(1.08);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .desktop {
+    background-size: 30px 30px;
+  }
+  
+  .desktop::before {
+    background-size: 90px 90px;
+  }
+  
+  .desktop-content {
+    padding-bottom: 70px;
+  }
+  
+  .robotic-text {
+    font-size: clamp(2rem, 7vw, 5rem);
+    letter-spacing: 0.01em;
+    gap: 0.05em;
+  }
+  
+  .text-line {
+    gap: 0.15em;
+  }
+  
+  .word.portfolio {
+    font-size: 1.25em;
+  }
+}
+
+@media (max-width: 480px) {
+  .desktop {
+    background-size: 25px 25px;
+  }
+  
+  .desktop::before {
+    background-size: 75px 75px;
+  }
+  
+  .desktop-content {
+    padding-bottom: 60px;
+  }
+  
+  .robotic-text {
+    font-size: clamp(1.5rem, 6vw, 4rem);
+    letter-spacing: 0.01em;
+    gap: 0.05em;
+  }
+  
+  .text-line {
+    gap: 0.1em;
+  }
+  
+  .word.portfolio {
+    font-size: 1.2em;
+  }
+}
+
+/* Performance optimizations */
+.desktop {
+  will-change: auto;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.word {
+  will-change: transform;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .word:hover {
+    animation: none;
+    transform: scale(1.02);
+  }
+  
+  .word.portfolio:hover {
+    animation: none;
+    transform: scale(1.03);
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .desktop {
+    background: #ffffff;
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.5) 1px, transparent 1px);
+  }
+  
+  .desktop::before {
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.3) 1px, transparent 1px);
+  }
+  
+  .robotic-text {
+    color: #000000;
+    text-shadow: none;
+  }
+  
+  .word {
+    color: #000000;
+  }
+  
+  .word.portfolio {
+    color: #000000;
+    text-shadow: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .desktop {
+    background: white;
+    background-image: none;
+  }
+  
+  .desktop::before {
+    display: none;
+  }
+  
+  .robotic-text {
+    color: black;
+    text-shadow: none;
+  }
+  
+  .word {
+    color: black;
+  }
+  
+  .word.portfolio {
+    color: black;
+    text-shadow: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.portfolio-title:focus {
+  outline: 2px solid #0984e3;
+  outline-offset: 10px;
+  border-radius: 10px;
+}
+
+.word:focus {
+  outline: 1px solid #0984e3;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.word.portfolio:focus {
+  outline: 2px solid #0984e3;
+  outline-offset: 3px;
+  border-radius: 4px;
+}

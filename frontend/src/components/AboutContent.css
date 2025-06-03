@@ -1,0 +1,633 @@
+.about-content {
+  padding: 32px;
+  max-width: 100%;
+  overflow-y: auto;
+}
+
+.about-header {
+  margin-bottom: 48px;
+}
+
+.profile-section {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.profile-image {
+  flex-shrink: 0;
+}
+
+.profile-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 3px solid #007AFF;
+}
+
+.profile-info h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.profile-info h2 {
+  font-size: 20px;
+  color: #007AFF;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.profile-info p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.specializations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.spec-tag {
+  background: linear-gradient(135deg, #007AFF, #00C7FF);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.about-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.skills-section h3,
+.tech-stack-section h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skills-section h3::before {
+  content: '🎯';
+  font-size: 20px;
+}
+
+.tech-stack-section h3::before {
+  content: '⚡';
+  font-size: 20px;
+}
+
+/* Skills Section */
+.skills-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skill-category {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #e9ecef;
+}
+
+.category-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #007AFF;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-item {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.skill-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-icon {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.skill-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.skill-percentage {
+  font-size: 12px;
+  color: #007AFF;
+  font-weight: 600;
+  background: rgba(0, 122, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.skill-bar {
+  height: 6px;
+  background: #e9ecef;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #007AFF, #00C7FF);
+  border-radius: 3px;
+  position: relative;
+}
+
+.skill-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* Technology Stack Section */
+.tech-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tech-category {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #e9ecef;
+}
+
+.tech-category-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #007AFF;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tech-category-title::before {
+  content: '';
+  width: 4px;
+  height: 16px;
+  background: linear-gradient(135deg, #007AFF, #00C7FF);
+  border-radius: 2px;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.tech-item {
+  background: white;
+  padding: 16px 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tech-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.tech-icon {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 122, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tech-item:hover .tech-icon {
+  transform: scale(1.1);
+  background: rgba(0, 122, 255, 0.2);
+}
+
+.tech-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Footer Section */
+.about-footer {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 20px;
+  border: 1px solid #dee2e6;
+}
+
+.contact-cta h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #007AFF, #00C7FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact-cta p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-tertiary {
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #007AFF, #00C7FF);
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: white;
+  color: #007AFF;
+  border: 2px solid #007AFF;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+  background: #007AFF;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-tertiary {
+  background: #333;
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn-tertiary:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-content {
+    padding: 20px;
+  }
+  
+  .profile-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .profile-info h1 {
+    font-size: 28px;
+  }
+  
+  .profile-info h2 {
+    font-size: 18px;
+  }
+  
+  .about-sections {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .skills-categories,
+  .tech-categories {
+    gap: 16px;
+  }
+  
+  .skill-category,
+  .tech-category {
+    padding: 16px;
+  }
+  
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+  }
+  
+  .tech-item {
+    padding: 12px 8px;
+  }
+  
+  .tech-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+  
+  .tech-name {
+    font-size: 11px;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary,
+  .btn-secondary,
+  .btn-tertiary {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+  
+  .about-footer {
+    padding: 24px;
+  }
+  
+  .contact-cta h3 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-content {
+    padding: 16px;
+  }
+  
+  .profile-image img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .profile-info h1 {
+    font-size: 24px;
+  }
+  
+  .profile-info h2 {
+    font-size: 16px;
+  }
+  
+  .specializations {
+    justify-content: center;
+  }
+  
+  .spec-tag {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+  
+  .skills-section h3,
+  .tech-stack-section h3 {
+    font-size: 20px;
+  }
+  
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+  
+  .tech-item {
+    padding: 8px 4px;
+  }
+  
+  .tech-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+  
+  .tech-name {
+    font-size: 10px;
+  }
+  
+  .contact-cta h3 {
+    font-size: 20px;
+  }
+  
+  .contact-cta p {
+    font-size: 14px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .skill-category,
+  .tech-category {
+    background: #2a2a2a;
+    border-color: #404040;
+  }
+  
+  .skill-item,
+  .tech-item {
+    background: #1a1a1a;
+    border-color: #404040;
+    color: #ffffff;
+  }
+  
+  .skill-name,
+  .tech-name {
+    color: #ffffff;
+  }
+  
+  .about-footer {
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border-color: #404040;
+  }
+  
+  .contact-cta h3 {
+    color: #ffffff;
+  }
+  
+  .contact-cta p {
+    color: #cccccc;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .skill-item,
+  .tech-item {
+    border: 2px solid #000000;
+  }
+  
+  .skill-progress {
+    background: #000000;
+  }
+  
+  .btn-primary {
+    background: #000000;
+    border: 2px solid #000000;
+  }
+  
+  .btn-secondary {
+    border: 2px solid #000000;
+    color: #000000;
+  }
+  
+  .btn-secondary:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+}
+
+/* Print styles */
+@media print {
+  .about-content {
+    padding: 0;
+  }
+  
+  .cta-buttons {
+    display: none;
+  }
+  
+  .tech-item,
+  .skill-item {
+    box-shadow: none;
+    border: 1px solid #cccccc;
+  }
+}
+
+/* Animation enhancements */
+.skill-item,
+.tech-item {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading states */
+.skill-progress {
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-item:hover .tech-icon {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 20%, 60%, 100% {
+    transform: translateY(0) scale(1.1);
+  }
+  40% {
+    transform: translateY(-4px) scale(1.1);
+  }
+  80% {
+    transform: translateY(-2px) scale(1.1);
+  }
+}
+

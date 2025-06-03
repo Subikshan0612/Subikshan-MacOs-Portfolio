@@ -1,0 +1,965 @@
+.desktop-icons {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+.desktop-icon:hover {
+  transform: scale(1.05);
+}
+
+.desktop-icon.dragging {
+  z-index: 1000;
+  transform: scale(1.1);
+  transition: none;
+}
+
+.app-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 8px;
+  /* Default transparent background */
+  background: transparent;
+}
+
+/* Desktop Icon Image Styling */
+.desktop-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 2;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Fallback styling only when image fails */
+.app-icon.fallback-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.app-icon.fallback-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+/* Fallback emoji styling */
+.fallback-emoji {
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  color: white;
+}
+
+.app-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Enhanced hover effects for images */
+.desktop-icon:hover .desktop-icon-image {
+  transform: scale(1.05);
+  filter: brightness(1.1) saturate(1.1);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.desktop-icon:hover .app-icon.fallback-icon {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.icon-label {
+  font-size: 13px;
+  color: white;
+  text-align: center;
+  margin-top: 6px;
+  padding: 3px 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 90px;
+  word-wrap: break-word;
+  line-height: 1.2;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.desktop-icon:hover .icon-label {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .desktop-icon {
+    width: 80px;
+  }
+  
+  .app-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 14px;
+    margin-bottom: 6px;
+  }
+  
+  .desktop-icon-image {
+    border-radius: 14px;
+  }
+  
+  .fallback-emoji {
+    font-size: 32px;
+  }
+  
+  .icon-label {
+    font-size: 12px;
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .desktop-icon {
+    width: 70px;
+  }
+  
+  .app-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    margin-bottom: 6px;
+  }
+  
+  .desktop-icon-image {
+    border-radius: 12px;
+  }
+  
+  .fallback-emoji {
+    font-size: 28px;
+  }
+  
+  .icon-label {
+    font-size: 11px;
+    max-width: 70px;
+    padding: 3px 8px;
+  }
+}
+
+/* Drag and drop effects */
+.desktop-icon.dragging {
+  opacity: 0.8;
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.desktop-icon.dragging .app-icon {
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.desktop-icon.dragging .desktop-icon-image {
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Selection effects */
+.desktop-icon:active {
+  transform: scale(0.95);
+}
+
+.desktop-icon:active .app-icon {
+  box-shadow: 
+    0 1px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.desktop-icon:active .desktop-icon-image {
+  transform: scale(0.95);
+  box-shadow: 
+    0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Focus states for accessibility */
+.desktop-icon:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.desktop-icon:focus .icon-label {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Animation for icon appearance */
+@keyframes iconFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.desktop-icon {
+  animation: iconFadeIn 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
+/* Staggered animation delays */
+.desktop-icon:nth-child(1) { animation-delay: 0.1s; }
+.desktop-icon:nth-child(2) { animation-delay: 0.2s; }
+.desktop-icon:nth-child(3) { animation-delay: 0.3s; }
+.desktop-icon:nth-child(4) { animation-delay: 0.4s; }
+.desktop-icon:nth-child(5) { animation-delay: 0.5s; }
+
+/* Double-click feedback */
+@keyframes doubleClickPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.desktop-icon.double-clicked {
+  animation: doubleClickPulse 0.3s ease-out;
+}
+
+/* Loading state for icons */
+.app-icon.loading {
+  animation: iconLoading 1.5s infinite;
+}
+
+@keyframes iconLoading {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .app-icon {
+    border: 2px solid #ffffff;
+  }
+  
+  .icon-label {
+    background: #000000;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+  }
+  
+  .desktop-icon:focus {
+    outline: 3px solid #ffffff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .desktop-icon,
+  .app-icon,
+  .desktop-icon-image {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .desktop-icon:hover {
+    transform: scale(1.02);
+  }
+  
+  .desktop-icon.dragging {
+    transform: scale(1.05);
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .icon-label {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+  }
+  
+  .desktop-icon:hover .icon-label {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Print styles */
+@media print {
+  .desktop-icons {
+    display: none;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .desktop-icon:hover {
+    transform: none;
+  }
+  
+  .desktop-icon:active {
+    transform: scale(1.1);
+  }
+  
+  .app-icon:hover {
+    transform: none;
+  }
+  
+  .desktop-icon:active .app-icon {
+    transform: scale(1.1);
+  }
+}
+
+/* Specific icon styling with proper content */
+.app-icon.about.fallback-icon {
+  background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD23F 100%);
+}
+
+.app-icon.about.fallback-icon::after {
+  content: '👤';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  z-index: 4;
+}
+
+.app-icon.healthcare-app.fallback-icon {
+  background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+}
+
+.app-icon.healthcare-app.fallback-icon::after {
+  content: '🏥';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  z-index: 4;
+}
+
+.app-icon.matchmaking-pro.fallback-icon {
+  background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%);
+}
+
+.app-icon.matchmaking-pro.fallback-icon::after {
+  content: '💕';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  z-index: 4;
+}
+
+.app-icon.portfolio.fallback-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.app-icon.portfolio.fallback-icon::after {
+  content: '🌐';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  z-index: 4;
+}
+
+.app-icon.contact.fallback-icon {
+  background: linear-gradient(135deg, #0078D4 0%, #106EBE 100%);
+}
+
+.app-icon.contact.fallback-icon::after {
+  content: '📧';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  z-index: 4;
+}
+
+.app-icon.resume.fallback-icon {
+  background: linear-gradient(135deg, #DC143C 0%, #B22222 100%);
+}
+
+.app-icon.resume.fallback-icon::after {
+  content: '📄';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 52px;
+  z-index: 4;
+}
+
+/* Enhanced shadow effects for specific icon types */
+.desktop-icon:hover .app-icon.about .desktop-icon-image {
+  box-shadow: 
+    0 4px 12px rgba(255, 107, 53, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.desktop-icon:hover .app-icon.healthcare-app .desktop-icon-image,
+.desktop-icon:hover .app-icon.matchmaking-pro .desktop-icon-image,
+.desktop-icon:hover .app-icon.portfolio .desktop-icon-image {
+  box-shadow: 
+    0 4px 12px rgba(102, 126, 234, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+.desktop-icon:hover .app-icon.contact .desktop-icon-image {
+  box-shadow: 
+    0 4px 12px rgba(0, 120, 212, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.desktop-icon:hover .app-icon.resume .desktop-icon-image {
+  box-shadow: 
+    0 4px 12px rgba(220, 20, 60, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Improved image loading states */
+.desktop-icon-image {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.desktop-icon-image[data-loaded="true"] {
+  opacity: 1;
+}
+
+.desktop-icon-image[data-error="true"] {
+  display: none !important;
+}
+
+/* Better fallback display logic */
+.app-icon:not(.fallback-icon) .fallback-emoji {
+  display: none !important;
+}
+
+.app-icon.fallback-icon .desktop-icon-image {
+  display: none !important;
+}
+
+.app-icon.fallback-icon .fallback-emoji {
+  display: flex !important;
+}
+
+/* Performance optimizations */
+.desktop-icon {
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.app-icon {
+  will-change: transform, box-shadow;
+}
+
+.desktop-icon-image {
+  will-change: transform;
+}
+
+/* Force GPU acceleration */
+.desktop-icon,
+.app-icon,
+.desktop-icon-image {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Prevent text selection */
+.desktop-icon,
+.app-icon,
+.icon-label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Better image aspect ratio */
+.desktop-icon-image {
+  aspect-ratio: 1 / 1;
+  object-position: center;
+}
+
+/* High DPI display support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .desktop-icon-image {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* Ensure proper layering */
+.desktop-icon {
+  isolation: isolate;
+}
+
+.app-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.desktop-icon-image {
+  position: relative;
+  z-index: 2;
+}
+
+.fallback-emoji {
+  position: relative;
+  z-index: 3;
+}
+
+/* Better error handling */
+.desktop-icon-image[src=""] {
+  display: none;
+}
+
+/* Improved accessibility */
+.desktop-icon[role="button"] {
+  cursor: pointer;
+}
+
+.desktop-icon[aria-label] {
+  position: relative;
+}
+
+/* Screen reader support */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Final responsive adjustments */
+@media (max-width: 320px) {
+  .desktop-icon {
+    width: 60px;
+  }
+  
+  .app-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+  }
+  
+  .desktop-icon-image {
+    border-radius: 10px;
+  }
+  
+  .fallback-emoji {
+    font-size: 24px;
+  }
+  
+  .app-icon.about.fallback-icon::after,
+  .app-icon.healthcare-app.fallback-icon::after,
+  .app-icon.matchmaking-pro.fallback-icon::after,
+  .app-icon.portfolio.fallback-icon::after,
+  .app-icon.contact.fallback-icon::after {
+    font-size: 24px;
+  }
+  
+  .icon-label {
+    font-size: 10px;
+    max-width: 60px;
+    padding: 2px 6px;
+  }
+}
+
+/* Ultra-wide screen support */
+@media (min-width: 1400px) {
+  .desktop-icon {
+    width: 110px;
+  }
+  
+  .app-icon {
+    width: 96px;
+    height: 96px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .desktop-icon-image {
+    border-radius: 20px;
+  }
+  
+  .fallback-emoji {
+    font-size: 44px;
+  }
+  
+  .app-icon.about.fallback-icon::after,
+  .app-icon.healthcare-app.fallback-icon::after,
+  .app-icon.matchmaking-pro.fallback-icon::after,
+  .app-icon.portfolio.fallback-icon::after,
+  .app-icon.contact.fallback-icon::after {
+    font-size: 44px;
+  }
+  
+  .icon-label {
+    font-size: 14px;
+    max-width: 110px;
+    padding: 4px 12px;
+  }
+}
+
+/* Very large screens */
+@media (min-width: 2000px) {
+  .desktop-icon {
+    width: 130px;
+  }
+  
+  .app-icon {
+    width: 112px;
+    height: 112px;
+    border-radius: 24px;
+    margin-bottom: 14px;
+  }
+  
+  .desktop-icon-image {
+    border-radius: 24px;
+  }
+  
+  .fallback-emoji {
+    font-size: 52px;
+  }
+  
+  .app-icon.about.fallback-icon::after,
+  .app-icon.healthcare-app.fallback-icon::after,
+  .app-icon.matchmaking-pro.fallback-icon::after,
+  .app-icon.portfolio.fallback-icon::after,
+  .app-icon.contact.fallback-icon::after {
+    font-size: 52px;
+  }
+  
+  .icon-label {
+    font-size: 15px;
+    max-width: 130px;
+    padding: 5px 14px;
+  }
+}
+
+/* Final cleanup */
+.desktop-icons * {
+  box-sizing: border-box;
+}
+
+/* Ensure proper stacking context */
+.desktop-icons {
+  isolation: isolate;
+}
+
+/* Better contrast for labels */
+.icon-label {
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Smooth transitions for all states */
+.desktop-icon * {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Final performance guarantee */
+.desktop-icon:hover {
+  will-change: transform;
+}
+
+.desktop-icon:not(:hover) {
+  will-change: auto;
+}
+
+/* Ensure no conflicts with image display */
+.app-icon * {
+  pointer-events: none;
+}
+
+.desktop-icon-image,
+.fallback-emoji {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Better visual hierarchy */
+.desktop-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.desktop-icon.dragging {
+  z-index: 1000;
+}
+
+/* Final image display optimization */
+.desktop-icon-image {
+  display: block !important;
+  opacity: 1;
+}
+
+.desktop-icon-image[style*="display: none"] {
+  display: none !important;
+}
+
+/* Ensure fallback only shows when needed */
+.fallback-emoji {
+  display: none;
+}
+
+.app-icon.fallback-icon .fallback-emoji {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Loading spinner for images */
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #007AFF;
+  z-index: 4;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Final cleanup to ensure proper display */
+.app-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-icon > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fallback-emoji,
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+}
+
+/* Enhanced visual feedback */
+.desktop-icon:hover .app-icon {
+  filter: brightness(1.1) saturate(1.1);
+}
+
+.desktop-icon:active .app-icon {
+  filter: brightness(0.9);
+}
+
+/* Better shadow transitions */
+.app-icon,
+.desktop-icon-image {
+  transition: 
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* Ensure proper icon positioning */
+.desktop-icon {
+  text-align: center;
+}
+
+/* Better spacing for larger icons */
+.desktop-icon {
+  margin: 10px;
+}
+
+/* Improved hover state for better UX */
+.desktop-icon:hover {
+  transform: scale(1.08);
+}
+
+.desktop-icon:hover .app-icon {
+  transform: scale(1.02);
+}
+
+/* Enhanced active state */
+.desktop-icon:active {
+  transform: scale(0.98);
+}
+
+.desktop-icon:active .app-icon {
+  transform: scale(0.98);
+}
+
+/* Better visual feedback for dragging */
+.desktop-icon.dragging {
+  opacity: 0.85;
+  transform: scale(1.12) rotate(3deg);
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.4));
+}
+
+/* Improved label styling for larger icons */
+.icon-label {
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Better responsive breakpoints */
+@media (max-width: 1200px) and (min-width: 769px) {
+  .desktop-icon {
+    width: 85px;
+  }
+  
+  .app-icon {
+    width: 75px;
+    height: 75px;
+    border-radius: 15px;
+  }
+  
+  .desktop-icon-image {
+    border-radius: 15px;
+  }
+  
+  .fallback-emoji {
+    font-size: 34px;
+  }
+  
+  .app-icon.about.fallback-icon::after,
+  .app-icon.healthcare-app.fallback-icon::after,
+  .app-icon.matchmaking-pro.fallback-icon::after,
+  .app-icon.portfolio.fallback-icon::after,
+  .app-icon.contact.fallback-icon::after {
+    font-size: 34px;
+  }
+}
+
+/* Final touch optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .desktop-icon {
+    margin: 15px;
+  }
+  
+  .desktop-icon:hover {
+    transform: none;
+  }
+  
+  .desktop-icon:active {
+    transform: scale(1.05);
+  }
+}
+
+/* Ensure proper z-index stacking */
+.app-icon::before {
+  z-index: 1;
+}
+
+.app-icon::after {
+  z-index: 4;
+}
+
+.desktop-icon-image {
+  z-index: 2;
+}
+
+.fallback-emoji {
+  z-index: 3;
+}
+
+/* Final performance optimizations */
+.desktop-icon {
+  contain: layout style paint;
+}
+
+.app-icon {
+  contain: layout style;
+}
+
+/* Ensure smooth animations */
+.desktop-icon,
+.app-icon,
+.desktop-icon-image {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+

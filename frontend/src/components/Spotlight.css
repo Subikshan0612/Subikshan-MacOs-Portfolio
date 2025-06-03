@@ -1,0 +1,1389 @@
+.spotlight-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20vh;
+  z-index: 10000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.spotlight-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.spotlight-search {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.search-icon {
+  font-size: 18px;
+  margin-right: 12px;
+  opacity: 0.6;
+}
+
+.spotlight-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  background: transparent;
+  color: #333;
+}
+
+.spotlight-search input::placeholder {
+  color: #999;
+}
+
+.spotlight-results {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.spotlight-result {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.spotlight-result:last-child {
+  border-bottom: none;
+}
+
+.spotlight-result:hover,
+.spotlight-result.selected {
+  background: rgba(0, 122, 255, 0.1);
+}
+
+.result-icon {
+  font-size: 24px;
+  margin-right: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Result Icon Image Styling */
+.result-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+/* Fallback styling only when image fails */
+.result-icon.fallback-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.result-icon.fallback-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+  border-radius: 10px 10px 0 0;
+}
+
+/* Fallback emoji styling */
+.fallback-emoji {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  color: white;
+}
+
+/* Enhanced hover effects for images */
+.spotlight-result:hover .result-icon-image {
+  transform: scale(1.05);
+  filter: brightness(1.1) saturate(1.1);
+}
+
+.spotlight-result:hover .result-icon.fallback-icon {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+.result-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.result-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.result-description {
+  font-size: 13px;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result-type {
+  font-size: 12px;
+  color: #999;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-left: 12px;
+}
+
+.spotlight-no-results {
+  padding: 40px 20px;
+  text-align: center;
+  color: #666;
+}
+
+.no-results-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.no-results-text {
+  font-size: 16px;
+}
+
+/* Scrollbar styling */
+.spotlight-results::-webkit-scrollbar {
+  width: 6px;
+}
+
+.spotlight-results::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.spotlight-results::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.spotlight-results::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Specific icon styling with proper fallback backgrounds */
+.result-icon.fallback-icon.about {
+  background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD23F 100%);
+}
+
+.result-icon.fallback-icon.contact {
+  background: linear-gradient(135deg, #0078D4 0%, #106EBE 100%);
+}
+
+.result-icon.fallback-icon.finder {
+  background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+}
+
+.result-icon.fallback-icon.safari {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.result-icon.fallback-icon.terminal {
+  background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+}
+
+/* Better fallback display logic */
+.result-icon:not(.fallback-icon) .fallback-emoji {
+  display: none !important;
+}
+
+.result-icon.fallback-icon .result-icon-image {
+  display: none !important;
+}
+
+.result-icon.fallback-icon .fallback-emoji {
+  display: flex !important;
+}
+
+/* Enhanced visual feedback */
+.spotlight-result:hover .result-icon {
+  transform: scale(1.05);
+}
+
+.spotlight-result.selected .result-icon {
+  transform: scale(1.02);
+}
+
+/* Better image loading states */
+.result-icon-image {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.result-icon-image[data-loaded="true"] {
+  opacity: 1;
+}
+
+.result-icon-image[data-error="true"] {
+  display: none !important;
+}
+
+/* Performance optimizations */
+.result-icon {
+  will-change: transform;
+}
+
+.result-icon-image {
+  will-change: transform, filter;
+}
+
+/* Ensure proper aspect ratio */
+.result-icon-image {
+  aspect-ratio: 1 / 1;
+  object-position: center;
+}
+
+/* High DPI display support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .result-icon-image {
+    image-rendering: -webkit-optimize-contrast;
+  }
+  }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .spotlight-overlay {
+    padding-top: 15vh;
+  }
+  
+  .spotlight-container {
+    margin: 0 16px;
+    border-radius: 10px;
+  }
+  
+  .spotlight-search {
+    padding: 14px 16px;
+  }
+  
+  .spotlight-search input {
+    font-size: 16px;
+  }
+  
+  .search-icon {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .spotlight-result {
+    padding: 10px 16px;
+  }
+  
+  .result-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+    border-radius: 8px;
+  }
+  
+  .result-icon-image {
+    border-radius: 8px;
+  }
+  
+  .fallback-emoji {
+    font-size: 20px;
+  }
+  
+  .result-name {
+    font-size: 15px;
+  }
+  
+  .result-description {
+    font-size: 12px;
+  }
+  
+  .result-type {
+    font-size: 11px;
+    padding: 3px 6px;
+    margin-left: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .spotlight-overlay {
+    padding-top: 10vh;
+  }
+  
+  .spotlight-container {
+    margin: 0 12px;
+    border-radius: 8px;
+  }
+  
+  .spotlight-search {
+    padding: 12px 14px;
+  }
+  
+  .spotlight-search input {
+    font-size: 15px;
+  }
+  
+  .search-icon {
+    font-size: 15px;
+    margin-right: 8px;
+  }
+  
+  .spotlight-result {
+    padding: 8px 14px;
+  }
+  
+  .result-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    border-radius: 6px;
+  }
+  
+  .result-icon-image {
+    border-radius: 6px;
+  }
+  
+  .fallback-emoji {
+    font-size: 18px;
+  }
+  
+  .result-name {
+    font-size: 14px;
+  }
+  
+  .result-description {
+    font-size: 11px;
+  }
+  
+  .result-type {
+    font-size: 10px;
+    padding: 2px 5px;
+    margin-left: 6px;
+  }
+  
+  .spotlight-results {
+    max-height: 300px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .spotlight-container {
+    background: rgba(30, 30, 30, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .spotlight-search {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .spotlight-search input {
+    color: #ffffff;
+  }
+  
+  .spotlight-search input::placeholder {
+    color: #999;
+  }
+  
+  .search-icon {
+    opacity: 0.7;
+  }
+  
+  .spotlight-result {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .spotlight-result:hover,
+  .spotlight-result.selected {
+    background: rgba(0, 122, 255, 0.2);
+  }
+  
+  .result-icon {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .result-name {
+    color: #ffffff;
+  }
+  
+  .result-description {
+    color: #cccccc;
+  }
+  
+  .result-type {
+    color: #999;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .spotlight-no-results {
+    color: #cccccc;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .spotlight-container {
+    background: #ffffff;
+    border: 2px solid #000000;
+  }
+  
+  .spotlight-search {
+    border-bottom: 2px solid #000000;
+  }
+  
+  .spotlight-result {
+    border-bottom: 1px solid #000000;
+  }
+  
+  .spotlight-result:hover,
+  .spotlight-result.selected {
+    background: #000000;
+    color: #ffffff;
+  }
+  
+  .result-icon {
+    border: 1px solid #000000;
+  }
+  
+  .result-name {
+    color: #000000;
+  }
+  
+  .result-description {
+    color: #333333;
+  }
+  
+  .result-type {
+    background: #000000;
+    color: #ffffff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-overlay,
+  .spotlight-container,
+  .spotlight-result,
+  .result-icon,
+  .result-icon-image {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .spotlight-result:hover .result-icon {
+    transform: scale(1.02);
+  }
+  
+  .spotlight-result:hover .result-icon-image {
+    transform: scale(1.02);
+    filter: brightness(1.05);
+  }
+}
+
+/* Print styles */
+@media print {
+  .spotlight-overlay {
+    display: none;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .spotlight-result:hover {
+    background: transparent;
+  }
+  
+  .spotlight-result:active {
+    background: rgba(0, 122, 255, 0.2);
+  }
+  
+  .spotlight-result:hover .result-icon {
+    transform: none;
+  }
+  
+  .spotlight-result:active .result-icon {
+    transform: scale(1.05);
+  }
+  
+  .spotlight-result:hover .result-icon-image {
+    transform: none;
+    filter: none;
+  }
+  
+  .spotlight-result:active .result-icon-image {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+}
+
+/* Better keyboard navigation */
+.spotlight-result.selected {
+  outline: 2px solid rgba(0, 122, 255, 0.8);
+  outline-offset: -2px;
+}
+
+/* Enhanced focus states */
+.spotlight-search input:focus {
+  outline: none;
+}
+
+.spotlight-container:focus-within {
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 3px rgba(0, 122, 255, 0.3);
+}
+
+/* Better visual hierarchy */
+.spotlight-result {
+  position: relative;
+}
+
+.spotlight-result::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.spotlight-result.selected::before {
+  background: #007AFF;
+}
+
+/* Enhanced loading states */
+.result-icon.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Better error handling */
+.result-icon-image[src=""] {
+  display: none;
+}
+
+/* Improved accessibility */
+.spotlight-result[role="option"] {
+  cursor: pointer;
+}
+
+.spotlight-result[aria-selected="true"] {
+  background: rgba(0, 122, 255, 0.1);
+}
+
+/* Screen reader support */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Enhanced visual feedback */
+.spotlight-result:active {
+  transform: scale(0.98);
+}
+
+.spotlight-result:active .result-icon {
+  transform: scale(0.95);
+}
+
+/* Better spacing and alignment */
+.result-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Improved text rendering */
+.spotlight-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced backdrop effects */
+.spotlight-overlay {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Better container positioning */
+.spotlight-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Improved scrolling behavior */
+.spotlight-results {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced visual polish */
+.spotlight-search {
+  position: relative;
+}
+
+.spotlight-search::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 122, 255, 0.3), transparent);
+}
+
+/* Better result highlighting */
+.spotlight-result:hover .result-name {
+  color: #007AFF;
+}
+
+.spotlight-result.selected .result-name {
+  color: #007AFF;
+  font-weight: 600;
+}
+
+/* Enhanced icon shadows */
+.result-icon {
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.spotlight-result:hover .result-icon,
+.spotlight-result.selected .result-icon {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Performance optimizations */
+.spotlight-container {
+  contain: layout style paint;
+}
+
+.spotlight-result {
+  contain: layout style;
+}
+
+/* Force GPU acceleration */
+.spotlight-container,
+.spotlight-result,
+.result-icon,
+.result-icon-image {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Ensure proper stacking context */
+.spotlight-overlay {
+  isolation: isolate;
+}
+
+.spotlight-container {
+  position: relative;
+  z-index: 1;
+}
+
+.spotlight-result {
+  position: relative;
+  z-index: 2;
+}
+
+.result-icon {
+  position: relative;
+  z-index: 3;
+}
+
+.result-icon-image {
+  position: relative;
+  z-index: 4;
+}
+
+.fallback-emoji {
+  position: relative;
+  z-index: 5;
+}
+
+/* Final cleanup */
+.spotlight-overlay * {
+  box-sizing: border-box;
+}
+
+/* Prevent text selection */
+.spotlight-container,
+.spotlight-result,
+.result-icon {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.spotlight-search input {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Better image display */
+.result-icon-image {
+  display: block;
+  opacity: 1;
+}
+
+.result-icon-image[style*="display: none"] {
+  display: none !important;
+}
+
+/* Ensure fallback only shows when needed */
+.fallback-emoji {
+  display: none;
+}
+
+.result-icon.fallback-icon .fallback-emoji {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Enhanced keyboard shortcuts display */
+.spotlight-search::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #999;
+  font-family: monospace;
+}
+
+/* Better visual feedback for selection */
+.spotlight-result.selected {
+  background: linear-gradient(90deg, 
+    rgba(0, 122, 255, 0.1) 0%, 
+    rgba(0, 122, 255, 0.05) 100%);
+}
+
+/* Enhanced container shadow */
+.spotlight-container {
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Final responsive adjustments */
+@media (max-width: 320px) {
+  .spotlight-overlay {
+    padding-top: 8vh;
+  }
+  
+  .spotlight-container {
+    margin: 0 8px;
+  }
+  
+  .spotlight-search {
+    padding: 10px 12px;
+  }
+  
+  .spotlight-result {
+    padding: 6px 12px;
+  }
+  
+  .result-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+  }
+  
+  .fallback-emoji {
+    font-size: 16px;
+  }
+  
+  .result-name {
+    font-size: 13px;
+  }
+  
+  .result-description {
+    font-size: 10px;
+  }
+  
+  .result-type {
+    font-size: 9px;
+    padding: 1px 4px;
+  }
+}
+
+/* Ultra-wide screen support */
+@media (min-width: 1400px) {
+  .spotlight-container {
+    max-width: 700px;
+  }
+  
+  .spotlight-search {
+    padding: 18px 24px;
+  }
+  
+  .spotlight-search input {
+    font-size: 20px;
+  }
+  
+  .search-icon {
+    font-size: 20px;
+    margin-right: 14px;
+  }
+  
+  .spotlight-result {
+    padding: 14px 24px;
+  }
+
+    
+  .result-icon {
+    width: 44px;
+    height: 44px;
+    margin-right: 18px;
+    border-radius: 12px;
+  }
+  
+  .result-icon-image {
+    border-radius: 12px;
+  }
+  
+  .fallback-emoji {
+    font-size: 26px;
+  }
+  
+  .result-name {
+    font-size: 17px;
+  }
+  
+  .result-description {
+    font-size: 14px;
+  }
+  
+  .result-type {
+    font-size: 13px;
+    padding: 5px 10px;
+    margin-left: 14px;
+  }
+  
+  .spotlight-results {
+    max-height: 450px;
+  }
+}
+
+/* Very large screens */
+@media (min-width: 2000px) {
+  .spotlight-container {
+    max-width: 800px;
+  }
+  
+  .spotlight-search {
+    padding: 20px 28px;
+  }
+  
+  .spotlight-search input {
+    font-size: 22px;
+  }
+  
+  .search-icon {
+    font-size: 22px;
+    margin-right: 16px;
+  }
+  
+  .spotlight-result {
+    padding: 16px 28px;
+  }
+  
+  .result-icon {
+    width: 48px;
+    height: 48px;
+    margin-right: 20px;
+    border-radius: 14px;
+  }
+  
+  .result-icon-image {
+    border-radius: 14px;
+  }
+  
+  .fallback-emoji {
+    font-size: 28px;
+  }
+  
+  .result-name {
+    font-size: 18px;
+  }
+  
+  .result-description {
+    font-size: 15px;
+  }
+  
+  .result-type {
+    font-size: 14px;
+    padding: 6px 12px;
+    margin-left: 16px;
+  }
+  
+  .spotlight-results {
+    max-height: 500px;
+  }
+}
+
+/* Better support for landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .spotlight-overlay {
+    padding-top: 8vh;
+  }
+  
+  .spotlight-results {
+    max-height: 250px;
+  }
+}
+
+/* Enhanced animation timing */
+.spotlight-overlay {
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spotlight-container {
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Better focus management */
+.spotlight-search input:focus {
+  caret-color: #007AFF;
+}
+
+/* Enhanced result interaction */
+.spotlight-result {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spotlight-result:hover {
+  transform: translateX(2px);
+}
+
+.spotlight-result.selected {
+  transform: translateX(4px);
+}
+
+/* Improved icon transitions */
+.result-icon {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.result-icon-image {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Better visual hierarchy for selected items */
+.spotlight-result.selected .result-name {
+  text-shadow: 0 0 8px rgba(0, 122, 255, 0.3);
+}
+
+/* Enhanced backdrop blur for better readability */
+.spotlight-container {
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+}
+
+/* Better contrast for text */
+.result-name {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.result-description {
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+/* Enhanced search icon animation */
+.search-icon {
+  transition: transform 0.2s ease;
+}
+
+.spotlight-search:focus-within .search-icon {
+  transform: scale(1.1);
+}
+
+/* Better loading state for container */
+.spotlight-container.loading {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* Enhanced error states */
+.spotlight-result.error {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.spotlight-result.error .result-icon {
+  filter: grayscale(100%);
+}
+
+/* Better visual feedback for keyboard navigation */
+.spotlight-result.selected::after {
+  content: '⏎';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #007AFF;
+  opacity: 0.7;
+}
+
+/* Enhanced no results state */
+.spotlight-no-results {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Better scrollbar for different browsers */
+.spotlight-results {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+/* Enhanced focus ring */
+.spotlight-result:focus {
+  outline: 2px solid #007AFF;
+  outline-offset: -2px;
+  border-radius: 8px;
+}
+
+/* Better visual separation */
+.spotlight-search {
+  position: relative;
+}
+
+.spotlight-search::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 122, 255, 0.2) 20%, 
+    rgba(0, 122, 255, 0.4) 50%, 
+    rgba(0, 122, 255, 0.2) 80%, 
+    transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.spotlight-search:focus-within::after {
+  opacity: 1;
+}
+
+/* Enhanced result type styling */
+.result-type {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Better image aspect ratio handling */
+.result-icon-image {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Enhanced fallback icon styling */
+.result-icon.fallback-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.result-icon.fallback-icon::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    transparent 70%);
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Better container border */
+.spotlight-container {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.spotlight-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.6) 50%, 
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* Enhanced result hover effects */
+.spotlight-result:hover .result-type {
+  background: rgba(0, 122, 255, 0.1);
+  color: #007AFF;
+}
+
+.spotlight-result.selected .result-type {
+  background: rgba(0, 122, 255, 0.2);
+  color: #007AFF;
+}
+
+/* Better text selection */
+.spotlight-search input::selection {
+  background: rgba(0, 122, 255, 0.3);
+}
+
+.spotlight-search input::-moz-selection {
+  background: rgba(0, 122, 255, 0.3);
+}
+
+/* Enhanced accessibility */
+.spotlight-result[aria-describedby] {
+  position: relative;
+}
+
+/* Better visual polish */
+.spotlight-container {
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Final performance optimizations */
+.spotlight-overlay {
+  contain: layout style paint;
+}
+
+.spotlight-container {
+  contain: layout style;
+}
+
+.spotlight-result {
+  contain: layout style;
+}
+
+/* Ensure proper rendering */
+.spotlight-overlay,
+.spotlight-container,
+.spotlight-result,
+.result-icon,
+.result-icon-image {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Better image error handling */
+.result-icon-image[alt]:empty::before {
+  content: attr(alt);
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  color: #999;
+  padding: 4px;
+}
+
+/* Enhanced visual feedback */
+.spotlight-result:active {
+  background: rgba(0, 122, 255, 0.15);
+}
+
+/* Better spacing consistency */
+.spotlight-search,
+.spotlight-result {
+  min-height: 44px; /* Ensure touch-friendly minimum height */
+}
+
+/* Final cleanup and optimization */
+.spotlight-overlay * {
+  box-sizing: border-box;
+}
+
+/* Ensure proper z-index stacking */
+.spotlight-overlay {
+  z-index: 10000;
+}
+
+.spotlight-container {
+  z-index: 10001;
+}
+
+.spotlight-result.selected {
+  z-index: 10002;
+}
+
+/* Better visual consistency */
+.result-icon,
+.result-icon-image,
+.fallback-emoji {
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+/* Enhanced container positioning */
+.spotlight-container {
+  transform-origin: center top;
+}
+
+/* Final visual polish */
+.spotlight-search input {
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.result-name {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.result-description {
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+/* Ensure smooth scrolling */
+.spotlight-results {
+  scroll-behavior: smooth;
+}
+
+/* Better focus management */
+.spotlight-container:focus-within {
+  outline: none;
+}
+
+/* Final accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-result:hover {
+    transform: none;
+  }
+  
+  .spotlight-result.selected {
+    transform: none;
+  }
+  
+  .search-icon {
+    transition: none;
+  }
+  
+  .spotlight-search:focus-within .search-icon {
+    transform: none;
+  }
+}
+
+/* Ensure proper contrast */
+@media (prefers-contrast: high) {
+  .spotlight-result.selected::after {
+    color: #000000;
+    font-weight: bold;
+  }
+}
+
+
+

@@ -1,0 +1,618 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap");
+
+.variable-proximity-container {
+  position: relative;
+  pointer-events: auto;
+  user-select: none;
+  cursor: pointer;
+}
+
+.variable-proximity-text {
+  text-align: center;
+  margin: 0;
+  position: relative;
+  line-height: 1.0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05em;
+  font-size: clamp(2.5rem, 8vw, 7rem);
+  
+  /* Enhanced text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Welcome line specific styling */
+.welcome-line {
+  gap: 0.12em;
+}
+
+/* Portfolio line specific styling */
+.portfolio-line {
+  gap: 0;
+}
+
+.word-wrapper {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Word spacing control */
+.word-space {
+  display: inline-block;
+  width: 0.15em;
+}
+
+/* Welcome words styling - "welcome to my" - JETBRAINS MONO/MONOSPACE */
+.welcome-words {
+  font-size: 0.65em;
+}
+
+.welcome-letter {
+  font-family: "JetBrains Mono", "Space Mono", monospace;
+  display: inline-block;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  color: #000000;
+  line-height: 1.0;
+  transform-origin: center center;
+  will-change: transform, font-variation-settings;
+  font-weight: 400;
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+  
+  /* Monospace/Code styling - NO BACKGROUND */
+  text-shadow: 
+    1px 1px 0px rgba(0, 0, 0, 0.1),
+    2px 2px 0px rgba(0, 0, 0, 0.05);
+  
+  /* Enhanced letter spacing and kerning */
+  font-feature-settings: "kern" 1, "liga" 0, "calt" 0;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  
+  /* Monospace character consistency */
+  font-variant-numeric: tabular-nums;
+  font-variant-ligatures: none;
+  
+  /* Enhanced monospace character width consistency - NO BACKGROUND */
+  min-width: 0.6em;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Ensure no unwanted box effects */
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.welcome-letter:hover {
+  color: #333333;
+  font-weight: 700;
+  text-shadow: 
+    1px 1px 0px rgba(0, 0, 0, 0.2),
+    2px 2px 0px rgba(0, 0, 0, 0.1),
+    0 0 5px rgba(0, 0, 0, 0.1);
+  
+  /* Only font and text effects, no backgrounds */
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Portfolio word styling - "PORTFOLIO" - ITALIC & BOLD */
+.portfolio-word {
+  font-size: 1.35em;
+  font-weight: 900;
+}
+
+.portfolio-letter {
+  font-family: "Playfair Display", serif;
+  display: inline-block;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  color: #000000;
+  line-height: 1.0;
+  transform-origin: center center;
+  will-change: transform, font-variation-settings;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  
+  /* Elegant italic styling */
+  text-shadow: 
+    1px 1px 2px rgba(0, 0, 0, 0.1);
+  
+  /* Enhanced letter spacing and kerning */
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "swsh" 1;
+  font-kerning: auto;
+  font-optical-sizing: auto;
+  
+  /* Only text-based effects, no backgrounds */
+  position: relative;
+  overflow: visible;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.portfolio-letter:hover {
+  color: #333333;
+  font-weight: 900;
+  text-shadow: 
+    1px 1px 2px rgba(0, 0, 0, 0.2),
+    2px 2px 4px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02) skewX(-2deg);
+  
+  /* Only font weight, color, text-shadow, and transform changes */
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .variable-proximity-text {
+    font-size: clamp(2rem, 7vw, 5rem);
+    gap: 0.04em;
+  }
+  
+  .welcome-line {
+    gap: 0.1em;
+  }
+  
+  .word-space {
+    width: 0.12em;
+  }
+  
+  .welcome-words {
+    font-size: 0.62em;
+  }
+  
+  .portfolio-word {
+    font-size: 1.32em;
+  }
+  
+  .welcome-letter {
+    letter-spacing: 0.06em;
+    min-width: 0.55em;
+  }
+  
+  .portfolio-letter {
+    letter-spacing: -0.005em;
+  }
+}
+
+@media (max-width: 480px) {
+  .variable-proximity-text {
+    font-size: clamp(1.5rem, 6vw, 4rem);
+    gap: 0.03em;
+  }
+  
+  .welcome-line {
+    gap: 0.08em;
+  }
+  
+  .word-space {
+    width: 0.1em;
+  }
+  
+  .welcome-words {
+    font-size: 0.6em;
+  }
+  
+  .portfolio-word {
+    font-size: 1.3em;
+  }
+  
+  .welcome-letter {
+    letter-spacing: 0.04em;
+    min-width: 0.5em;
+  }
+  
+  .portfolio-letter {
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .variable-proximity-text {
+    font-size: clamp(1.2rem, 5vw, 3rem);
+    gap: 0.02em;
+  }
+  
+  .welcome-line {
+    gap: 0.06em;
+  }
+  
+  .word-space {
+    width: 0.08em;
+  }
+  
+  .welcome-words {
+    font-size: 0.58em;
+  }
+  
+  .portfolio-word {
+    font-size: 1.28em;
+  }
+  
+  .welcome-letter {
+    letter-spacing: 0.02em;
+    min-width: 0.45em;
+  }
+  
+  .portfolio-letter {
+    letter-spacing: 0;
+  }
+}
+
+/* Performance optimizations */
+.welcome-letter,
+.portfolio-letter {
+  contain: layout style;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .welcome-letter,
+  .portfolio-letter {
+    transition: none !important;
+  }
+  
+  .welcome-letter:hover,
+  .portfolio-letter:hover {
+    transform: none !important;
+  }
+  
+  .variable-proximity-container {
+    animation: none !important;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .welcome-letter,
+  .portfolio-letter {
+    color: #000000;
+    text-shadow: none;
+  }
+  
+  .welcome-letter:hover,
+  .portfolio-letter:hover {
+    color: #000000;
+    text-shadow: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .welcome-letter,
+  .portfolio-letter {
+    color: #000000;
+  }
+  
+  .welcome-letter:hover,
+  .portfolio-letter:hover {
+    color: #333333;
+  }
+}
+
+/* Print styles */
+@media print {
+  .welcome-letter,
+  .portfolio-letter {
+    color: black;
+    text-shadow: none;
+    font-style: normal;
+  }
+}
+
+/* Focus styles for accessibility - CLEAN FOCUS WITHOUT BACKGROUND */
+.variable-proximity-container:focus {
+  outline: 2px solid #000000;
+  outline-offset: 8px;
+  border-radius: 8px;
+}
+
+.welcome-letter:focus,
+.portfolio-letter:focus {
+  outline: 1px solid #000000;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Enhanced font variation settings for better animation */
+.welcome-letter,
+.portfolio-letter {
+  font-optical-sizing: auto;
+  font-synthesis: none;
+}
+
+/* Ensure proper spacing and alignment */
+.word-wrapper {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+/* Smooth transitions for font variations */
+.welcome-letter,
+.portfolio-letter {
+  transition: 
+    font-weight 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+/* Ensure text remains crisp during animations */
+.variable-proximity-container {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: common-ligatures;
+}
+
+/* Prevent text selection during interaction */
+.variable-proximity-container * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Ensure proper cursor behavior */
+.welcome-letter,
+.portfolio-letter {
+  cursor: inherit;
+}
+
+/* Enhanced interaction states - NO BACKGROUND CHANGES */
+.welcome-letter:active {
+  transform: scale(0.98);
+  font-weight: 800;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.portfolio-letter:active {
+  transform: scale(0.96) skewX(-1deg);
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Animation keyframes for special effects */
+@keyframes letterFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes letterPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes monoGlow {
+  0%, 100% {
+    text-shadow: 
+      1px 1px 0px rgba(0, 0, 0, 0.1),
+      2px 2px 0px rgba(0, 0, 0, 0.05);
+  }
+  50% {
+    text-shadow: 
+      1px 1px 0px rgba(0, 0, 0, 0.2),
+      2px 2px 0px rgba(0, 0, 0, 0.1),
+      0 0 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes italicSway {
+  0%, 100% {
+    transform: skewX(0deg);
+  }
+  50% {
+    transform: skewX(-3deg);
+  }
+}
+
+/* Special animation classes */
+.welcome-letter.animate-float {
+  animation: letterFloat 2s ease-in-out infinite;
+}
+
+.welcome-letter.animate-pulse {
+  animation: monoGlow 1.5s ease-in-out infinite;
+}
+
+.portfolio-letter.animate-float {
+  animation: letterFloat 2s ease-in-out infinite;
+}
+
+.portfolio-letter.animate-pulse {
+  animation: italicSway 1.5s ease-in-out infinite;
+}
+
+/* Container animations */
+@keyframes containerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.variable-proximity-container.animate-in {
+  animation: containerFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Additional styling for better visual hierarchy */
+.text-line:first-child .welcome-letter {
+  opacity: 0.9;
+}
+
+.text-line:last-child .portfolio-letter {
+  opacity: 1;
+}
+
+/* Enhanced letter spacing for better readability */
+.welcome-letter {
+  margin-right: 0.02em;
+}
+
+.portfolio-letter {
+  margin-right: -0.005em;
+}
+
+/* Swash and flourish effects for italic letters - NO BACKGROUNDS */
+.portfolio-letter:nth-child(odd) {
+  transform-origin: center bottom;
+}
+
+.portfolio-letter:nth-child(even) {
+  transform-origin: center top;
+}
+
+.portfolio-letter:hover:nth-child(odd) {
+  transform: scale(1.02) skewX(-2deg) rotate(-1deg);
+}
+
+.portfolio-letter:hover:nth-child(even) {
+  transform: scale(1.02) skewX(-2deg) rotate(1deg);
+}
+
+/* Enhanced focus states for better accessibility - NO BACKGROUNDS */
+.welcome-letter:focus-visible {
+  outline: 2px solid #007acc;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.portfolio-letter:focus-visible {
+  outline: 2px solid #8b4513;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Performance optimizations for animations */
+.welcome-letter,
+.portfolio-letter {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform, font-weight, color, text-shadow;
+}
+
+/* Prevent layout shifts during font weight changes */
+.welcome-letter,
+.portfolio-letter {
+  font-synthesis: weight;
+  font-display: swap;
+}
+
+/* Enhanced text rendering for different browsers */
+@supports (font-variation-settings: normal) {
+  .welcome-letter,
+  .portfolio-letter {
+    font-variation-settings: 'wght' 400;
+  }
+  
+  .welcome-letter:hover {
+    font-variation-settings: 'wght' 700;
+  }
+  
+  .portfolio-letter:hover {
+    font-variation-settings: 'wght' 900;
+  }
+}
+
+/* Fallback for browsers without font-variation-settings support */
+@supports not (font-variation-settings: normal) {
+  .welcome-letter:hover {
+    font-weight: 700;
+  }
+  
+  .portfolio-letter:hover {
+    font-weight: 900;
+  }
+}
+
+/* Clean letter effects - only text transformations */
+.welcome-letter {
+  position: relative;
+}
+
+.portfolio-letter {
+  position: relative;
+  overflow: visible;
+}
+
+/* Ensure no unwanted box effects on any state */
+.welcome-letter:focus,
+.portfolio-letter:focus {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* Remove any pseudo-element backgrounds */
+.welcome-letter::before,
+.welcome-letter::after,
+.portfolio-letter::before,
+.portfolio-letter::after {
+  display: none !important;
+}
+
