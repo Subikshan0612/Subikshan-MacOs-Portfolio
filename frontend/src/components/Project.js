@@ -14,7 +14,7 @@ const Project = () => {
       title: 'Healthcare Management System',
       category: 'web',
       description: 'A comprehensive healthcare management platform with patient records, appointment scheduling, and telemedicine features.',
-      image: '/assets/projects/DoctorSelection.png',
+      image: 'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099571/DoctorSelection_bterjz.png',
       technologies: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'Express'],
       status: 'in-progress',
       liveUrl: 'https://healthcare-demo.com',
@@ -28,9 +28,9 @@ const Project = () => {
         'Prescription Management'
       ],
       screenshots: [
-        '/assets/projects/DoctorSelection.png',
-        '/assets/projects/AppointmentBooking.png',
-        '/assets/projects/SignUp&In.png'
+        'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099571/AppointmentPreview_tkq3yh.png',
+        'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099571/AppointmentBooking_rezbxg.png',
+        'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099575/SignUp_In_xk4jlz.png'
       ]
     },
     {
@@ -38,7 +38,7 @@ const Project = () => {
       title: 'Matchmaking Pro Platform',
       category: 'mobile',
       description: 'An advanced matchmaking platform with AI-powered compatibility matching and real-time chat features.',
-      image: '/assets/projects/MP-Dashboard.png',
+      image: 'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099572/MP-Dashboard_mdp0i4.png',
       technologies: ['React Native', 'Firebase', 'Python', 'TensorFlow', 'WebRTC'],
       status: 'in-progress',
       liveUrl: 'https://matchmaking-demo.com',
@@ -52,9 +52,9 @@ const Project = () => {
         'Compatibility Scoring'
       ],
       screenshots: [
-        '/assets/projects/LiveStatus.png',
-        '/api/placeholder/600/400',
-        '/api/placeholder/600/400'
+        'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099572/ProfileView_h7prhv.png',
+        'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099572/LiveStatus_hf5pfe.png',
+        'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099571/CallRecording_qu5vft.png'
       ]
     },
     {
@@ -62,7 +62,7 @@ const Project = () => {
       title: 'Interactive Portfolio Website',
       category: 'web',
       description: 'A modern, interactive portfolio website built with React and featuring macOS-inspired design elements.',
-      image: '/assets/projects/LandingPage.png',
+      image: 'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099572/LandingPage_hnw2a8.png',
       technologies: ['React', 'Framer Motion', 'CSS3', 'JavaScript', 'Vercel'],
       status: 'completed',
       liveUrl: 'https://subikshan-portfolio.com',
@@ -76,9 +76,8 @@ const Project = () => {
         'Contact Integration'
       ],
       screenshots: [
-        '/assets/projects/Projects.png',
-        '/api/placeholder/600/400',
-        '/api/placeholder/600/400'
+        'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099572/Projects_z1lvbb.png',
+        'https://res.cloudinary.com/dfnj5fh0i/image/upload/v1749099575/ProjectView_knzxyf.png'
       ]
     }
   ];
@@ -131,6 +130,11 @@ const Project = () => {
     setSelectedCategory(categoryId);
     const category = categories.find(cat => cat.id === categoryId);
     setCurrentPath(category ? category.name : 'Projects');
+  };
+
+  // Helper function to handle image loading errors
+  const handleImageError = (e) => {
+    e.target.src = 'https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/fallback/project-placeholder.jpg';
   };
 
   return (
@@ -216,7 +220,12 @@ const Project = () => {
               >
                 <div className="project-icon">
                   <div className="project-preview">
-                    <img src={project.image} alt={project.title} />
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      onError={handleImageError}
+                      loading="lazy"
+                    />
                   </div>
                   <div className="project-status-badge">
                     <span className={`status-indicator ${project.status}`}>
@@ -315,6 +324,8 @@ const Project = () => {
                       src={selectedProject.screenshots[0]}
                       alt={`${selectedProject.title} preview`}
                       className="main-screenshot"
+                      onError={handleImageError}
+                      loading="lazy"
                     />
                   </div>
                   
@@ -341,7 +352,7 @@ const Project = () => {
                 <a
                   href={selectedProject.githubUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                                    rel="noopener noreferrer"
                   className="modal-btn secondary-btn"
                 >
                   📂 View Code
@@ -356,3 +367,4 @@ const Project = () => {
 };
 
 export default Project;
+

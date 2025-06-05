@@ -260,6 +260,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .projects-container.list .project-preview {
@@ -271,6 +272,43 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Fixed image loading states - Remove conflicting pseudo-elements */
+.project-preview.loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.project-preview img.loaded {
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Image hover effects */
+.project-item:hover .project-preview img {
+  transform: scale(1.05);
 }
 
 .project-status-badge {
@@ -285,6 +323,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 3;
 }
 
 .status-indicator {
@@ -462,6 +501,7 @@
 
 .modal-screenshot {
   width: 100%;
+  position: relative;
 }
 
 .main-screenshot {
@@ -470,6 +510,34 @@
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid #e9ecef;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+/* Fixed modal screenshot loading */
+.modal-screenshot.loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.main-screenshot.loaded {
+  opacity: 1;
+}
+
+/* Enhanced modal screenshot styles */
+.main-screenshot:hover {
+  transform: scale(1.02);
+  cursor: zoom-in;
 }
 
 .project-description h3,
@@ -525,7 +593,7 @@
   gap: 10px;
   justify-content: center;
   padding-top: 16px;
-  border-top: 1px solid #e9ecef;
+    border-top: 1px solid #e9ecef;
 }
 
 .modal-btn {
@@ -560,6 +628,38 @@
 .secondary-btn:hover {
   background: #5a6268;
   transform: translateY(-1px);
+}
+
+/* Image Error Handling */
+.project-preview img[alt]:after {
+  content: "📷";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #ccc;
+}
+
+.main-screenshot[alt]:after {
+  content: "🖼️ Image not available";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+/* Cloudinary Image Optimization Classes */
+.project-preview img,
+.main-screenshot {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 /* Responsive Design */
@@ -611,7 +711,7 @@
   
   .sidebar-section {
     margin-bottom: 12px;
-      }
+  }
   
   .projects-content-area {
     padding: 16px;
@@ -870,7 +970,9 @@
     transform: none !important;
   }
   
-  .loading {
+  .loading,
+  .shimmer,
+  .placeholder-shimmer {
     animation: none !important;
   }
 }
@@ -1092,8 +1194,8 @@
   .modal-body {
     gap: 12px;
   }
-  
-  .main-screenshot {
+
+    .main-screenshot {
     height: 140px;
   }
   
@@ -1107,4 +1209,305 @@
     min-width: 80px;
   }
 }
+
+/* Cloudinary specific optimizations */
+.cloudinary-image {
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.cloudinary-image.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: cloudinary-loading 1.5s infinite;
+}
+
+@keyframes cloudinary-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Image quality enhancement for Cloudinary */
+.project-preview img,
+.main-screenshot {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: bicubic;
+}
+
+/* Retina display optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .project-preview img,
+  .main-screenshot {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-quality;
+  }
+}
+
+/* Image error state styling */
+.project-preview img[src*="placeholder"],
+.main-screenshot[src*="placeholder"] {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+/* Progressive enhancement for modern browsers */
+@supports (object-fit: cover) {
+  .project-preview img,
+  .main-screenshot {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+/* WebP support detection */
+@supports (background-image: url('data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA')) {
+  .project-preview img,
+  .main-screenshot {
+    /* WebP images will be served by Cloudinary automatically */
+    image-rendering: auto;
+  }
+}
+
+/* Dark mode support for images */
+@media (prefers-color-scheme: dark) {
+  .project-preview,
+  .modal-screenshot {
+    background: #2d3748;
+  }
+  
+  .project-preview img,
+  .main-screenshot {
+    opacity: 0.9;
+  }
+  
+  .project-preview img:hover,
+  .main-screenshot:hover {
+    opacity: 1;
+  }
+}
+
+/* Image aspect ratio maintenance */
+.project-preview {
+  aspect-ratio: 4/3;
+}
+
+.main-screenshot {
+  aspect-ratio: 16/10;
+}
+
+/* Fallback for browsers that don't support aspect-ratio */
+@supports not (aspect-ratio: 1) {
+  .project-preview {
+    width: 80px;
+    height: 60px;
+  }
+  
+  .main-screenshot {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+/* Image zoom functionality */
+.image-zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20000;
+  cursor: zoom-out;
+}
+
+.image-zoom-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Image gallery navigation */
+.image-gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.2s ease;
+  z-index: 1001;
+}
+
+.image-gallery-nav:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.image-gallery-nav.prev {
+  left: 20px;
+}
+
+.image-gallery-nav.next {
+  right: 20px;
+}
+
+/* Screenshot thumbnails */
+.screenshot-thumbnails {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+
+.screenshot-thumbnail {
+  width: 60px;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.screenshot-thumbnail:hover {
+  border-color: #007AFF;
+  transform: scale(1.05);
+}
+
+.screenshot-thumbnail.active {
+  border-color: #007AFF;
+}
+
+.screenshot-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Image lazy loading intersection observer styles */
+.image-observer {
+  min-height: 60px;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.image-observer.loading::after {
+  content: '📷';
+  font-size: 24px;
+  opacity: 0.5;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+/* Network-aware image loading */
+@media (prefers-reduced-data: reduce) {
+  .project-preview img,
+  .main-screenshot {
+    /* Load lower quality images on slow connections */
+    filter: blur(0.5px);
+  }
+}
+
+/* Connection-specific optimizations */
+.slow-connection .project-preview img,
+.slow-connection .main-screenshot {
+  transition: filter 0.3s ease;
+  filter: blur(1px);
+}
+
+.slow-connection .project-preview img.loaded,
+.slow-connection .main-screenshot.loaded {
+  filter: none;
+}
+
+/* Image preloading styles */
+.preload-image {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Final accessibility improvements for images */
+.project-preview img[alt=""],
+.main-screenshot[alt=""] {
+  opacity: 0.7;
+}
+
+.project-preview img:focus,
+.main-screenshot:focus {
+  outline: 2px solid #007AFF;
+  outline-offset: 2px;
+}
+
+/* Image copyright/watermark styles */
+.image-watermark {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Image metadata display */
+.image-metadata {
+  font-size: 10px;
+  color: #666;
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* Final performance optimizations */
+.project-preview,
+.modal-screenshot {
+  contain: layout style paint;
+}
+
+.project-preview img,
+.main-screenshot {
+  content-visibility: auto;
+  contain-intrinsic-size: 200px 150px;
+}
+
+/* GPU acceleration for smooth animations */
+.project-item,
+.project-preview img,
+.main-screenshot {
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 
