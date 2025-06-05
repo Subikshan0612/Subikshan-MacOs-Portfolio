@@ -7,7 +7,7 @@ const FinderContent = () => {
   const [viewMode, setViewMode] = useState('grid');
 
   const folders = [
-    { name: 'Projects', type: 'folder', icon: '📁', items: 12 },
+    { name: 'Projects', type: 'folder', icon: '📁', items: 3 },
     { name: 'Design Assets', type: 'folder', icon: '🎨', items: 45 },
     { name: 'Prototypes', type: 'folder', icon: '⚡', items: 8 },
     { name: 'Research', type: 'folder', icon: '📊', items: 23 },
@@ -16,7 +16,7 @@ const FinderContent = () => {
   ];
 
   const files = [
-    { name: 'Resume_Inika_2025.pdf', type: 'pdf', icon: '📄', size: '2.3 MB' },
+    { name: 'Resume_Subikshan.pdf', type: 'pdf', icon: '📄', size: '2.3 MB' },
     { name: 'Portfolio_Overview.sketch', type: 'sketch', icon: '💎', size: '15.7 MB' },
     { name: 'Brand_Guidelines.figma', type: 'figma', icon: '🎨', size: '8.2 MB' },
     { name: 'User_Research_Notes.txt', type: 'text', icon: '📝', size: '156 KB' }
