@@ -159,16 +159,16 @@
   color: white;
 }
 
-/* Contact Methods in Sidebar */
-.contact-methods-sidebar {
+/* Social Media Links in Sidebar */
+.social-links-sidebar {
   margin-bottom: 20px;
 }
 
-.contact-methods-sidebar .section-header {
+.social-links-sidebar .section-header {
   margin-bottom: 8px;
 }
 
-.contact-method-sidebar {
+.social-link-sidebar {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -181,38 +181,59 @@
   border: 1px solid #e9ecef;
 }
 
-.contact-method-sidebar:hover {
+.social-link-sidebar:hover {
   background: #f0f8ff;
   border-color: #007AFF;
   transform: translateX(2px);
 }
 
-.method-icon-sidebar {
+.social-icon-sidebar {
   font-size: 16px;
   width: 28px;
   height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #007AFF;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border-radius: 6px;
   flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
-.method-info-sidebar {
+.social-link-sidebar:nth-child(1) .social-icon-sidebar {
+  background: linear-gradient(135deg, #1DA1F2 0%, #0d8bd9 100%); /* Twitter */
+}
+
+.social-link-sidebar:nth-child(2) .social-icon-sidebar {
+  background: linear-gradient(135deg, #0077B5 0%, #005885 100%); /* LinkedIn */
+}
+
+.social-link-sidebar:nth-child(3) .social-icon-sidebar {
+  background: linear-gradient(135deg, #E4405F 0%, #C13584 100%); /* Instagram */
+}
+
+.social-link-sidebar:nth-child(4) .social-icon-sidebar {
+  background: linear-gradient(135deg, #1877F2 0%, #166fe5 100%); /* Facebook */
+}
+
+.social-link-sidebar:nth-child(5) .social-icon-sidebar {
+  background: linear-gradient(135deg, #333 0%, #24292e 100%); /* GitHub */
+}
+
+.social-info-sidebar {
   flex: 1;
   min-width: 0;
 }
 
-.method-info-sidebar h4 {
+.social-info-sidebar h4 {
   font-size: 12px;
   font-weight: 600;
   color: #1d1d1f;
   margin-bottom: 2px;
 }
 
-.method-info-sidebar p {
+.social-info-sidebar p {
   font-size: 11px;
   color: #86868b;
   margin: 0;
@@ -496,22 +517,22 @@
     gap: 0;
   }
   
-  .contact-method-sidebar {
+  .social-link-sidebar {
     margin: 4px 4px;
     padding: 6px 12px;
   }
   
-  .method-icon-sidebar {
+  .social-icon-sidebar {
     width: 24px;
     height: 24px;
     font-size: 14px;
   }
   
-  .method-info-sidebar h4 {
+  .social-info-sidebar h4 {
     font-size: 11px;
   }
   
-  .method-info-sidebar p {
+  .social-info-sidebar p {
     font-size: 10px;
   }
 }
@@ -548,12 +569,12 @@
     border: 1px solid #e9ecef;
   }
   
-  .contact-methods-sidebar .section-items {
+  .social-links-sidebar .section-items {
     display: block;
     overflow-x: visible;
   }
   
-  .contact-method-sidebar {
+  .social-link-sidebar {
     margin: 4px 8px;
   }
   
@@ -571,7 +592,7 @@
   
   .contact-form {
     padding: 20px;
-    }
+  }
   
   .form-group input,
   .form-group textarea {
@@ -586,7 +607,7 @@
 }
 
 /* Focus states for better accessibility */
-.contact-method-sidebar:focus,
+.social-link-sidebar:focus,
 .form-group input:focus-visible,
 .form-group textarea:focus-visible,
 .submit-btn:focus-visible {
@@ -647,8 +668,13 @@
 }
 
 /* Enhanced hover effects */
-.contact-method-sidebar:hover .method-icon-sidebar {
+.social-link-sidebar:hover .social-icon-sidebar {
   transform: scale(1.05);
+}
+
+/* Social media specific hover effects */
+.social-link-sidebar:hover .social-icon-sidebar {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Better typography */
@@ -685,7 +711,7 @@
     display: none !important;
   }
   
-  .contact-method-sidebar {
+  .social-link-sidebar {
     background: white !important;
     border: 1px solid black !important;
   }
@@ -707,7 +733,7 @@
 /* Better performance */
 .contact-content,
 .contact-form,
-.contact-method-sidebar {
+.social-link-sidebar {
   contain: layout style paint;
 }
 
@@ -716,4 +742,56 @@
   position: relative;
   z-index: 1;
 }
-  
+
+/* Additional social media styling */
+.social-link-sidebar:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon-sidebar {
+  font-weight: bold;
+}
+
+/* Specific social media platform colors on hover */
+.social-link-sidebar:nth-child(1):hover {
+  border-color: #1DA1F2;
+  background: rgba(29, 161, 242, 0.05);
+}
+
+.social-link-sidebar:nth-child(2):hover {
+  border-color: #0077B5;
+  background: rgba(0, 119, 181, 0.05);
+}
+
+.social-link-sidebar:nth-child(3):hover {
+  border-color: #E4405F;
+  background: rgba(228, 64, 95, 0.05);
+}
+
+.social-link-sidebar:nth-child(4):hover {
+  border-color: #1877F2;
+  background: rgba(24, 119, 242, 0.05);
+}
+
+.social-link-sidebar:nth-child(5):hover {
+  border-color: #333;
+  background: rgba(51, 51, 51, 0.05);
+}
+
+/* Animation for social icons */
+@keyframes socialPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.social-link-sidebar:hover .social-icon-sidebar {
+  animation: socialPulse 0.6s ease-in-out;
+}
+

@@ -17,24 +17,36 @@ const ContactContent = () => {
   // Web3Forms access key - Replace with your actual access key
   const WEB3FORMS_ACCESS_KEY = "98bf8161-7182-4340-afd8-3bab361e393b";
 
-  const contactMethods = [
+  const socialLinks = [
     {
-      icon: '📧',
-      title: 'Email',
-      value: 'inikajhamvar@gmail.com',
-      action: () => window.open('mailto:inikajhamvar@gmail.com')
+      icon: '𝕏',
+      title: 'Twitter',
+      value: '@SUBIKSH87705822',
+      url: 'https://x.com/SUBIKSH87705822'
     },
     {
       icon: '💼',
       title: 'LinkedIn',
-      value: 'linkedin.com/in/inikajhamvar',
-      action: () => window.open('https://linkedin.com/in/inikajhamvar', '_blank')
+      value: 'subikshan-ramachandran',
+      url: 'https://www.linkedin.com/in/subikshan-ramachandran-2aa302303/'
     },
     {
-      icon: '📱',
-      title: 'Phone',
-      value: '+1 (555) 123-4567',
-      action: () => window.open('tel:+15551234567')
+      icon: '📷',
+      title: 'Instagram',
+      value: '@im_tho_tho',
+      url: 'https://www.instagram.com/im_tho_tho/'
+    },
+    {
+      icon: '📘',
+      title: 'Facebook',
+      value: 'Facebook Profile',
+      url: 'https://www.facebook.com/profile.php?id=100010029821759'
+    },
+    {
+      icon: '🐙',
+      title: 'GitHub',
+      value: 'Subikshan0612',
+      url: 'https://github.com/Subikshan0612'
     }
   ];
 
@@ -166,28 +178,28 @@ const ContactContent = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {/* Contact Methods Section */}
-          <div className="contact-methods-sidebar">
+          {/* Social Media Section */}
+          <div className="social-links-sidebar">
             <div className="section-header">
-              <span className="section-icon">📞</span>
-              <span className="section-name">Get in Touch</span>
+              <span className="section-icon">🌐</span>
+              <span className="section-name">Social Media</span>
             </div>
             <div className="section-items">
-              {contactMethods.map((method, index) => (
+              {socialLinks.map((social, index) => (
                 <motion.div
                   key={index}
-                  className="contact-method-sidebar"
-                  onClick={method.action}
+                  className="social-link-sidebar"
+                  onClick={() => window.open(social.url, '_blank')}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
                 >
-                  <div className="method-icon-sidebar">{method.icon}</div>
-                  <div className="method-info-sidebar">
-                    <h4>{method.title}</h4>
-                    <p>{method.value}</p>
+                  <div className="social-icon-sidebar">{social.icon}</div>
+                  <div className="social-info-sidebar">
+                    <h4>{social.title}</h4>
+                    <p>{social.value}</p>
                   </div>
                 </motion.div>
               ))}
@@ -327,7 +339,7 @@ const ContactContent = () => {
                 
                 <motion.button
                   type="submit"
-                                    className="submit-btn"
+                  className="submit-btn"
                   disabled={isSubmitting}
                   whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
@@ -351,4 +363,3 @@ const ContactContent = () => {
 };
 
 export default ContactContent;
-
